@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dota 2 Heroes</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADRUlEQVR4AU2RA7BsRxCG/+45Potr24xt27Zt27aNUlCIbdt28my/rbs6mM4Ugm+MNh002LF+reIWEYmKaVotCi2rphp5izcZy/ljS6Nk0bRS9FmoyO/1nd6ViV5Y0jrymaIFcfo1XTHZ+3G7ba2fEiACxKmAGCkrUkwEBSASKbBAXKJ8AoFHAp+BPyrJgxxrWa6IjANYyoRCxmIwoCqJQCnAMSPDnAkUuxUtKyKNakkTIjCmErE4tLlWCOXvSpXzvi9Vj1qZpn9YTHCJwALYBFRFz5obJzf/Wo0OXpzET7pMOtEE37LybD7WOEzeoO/smGF6/e2Vxc1X6vR5R9EKEkA0EAtKNtOnt/8088U/itVXFUnZKIHxXlslLYsZGG1xrN3Mx8fWzKtDz/pm2q7HjHUdNeE7ZymlhptsGosgzx4z2nl+g0VdgaKARGCTzFarNWQ36/ad1TQBeVsNmY+9I4259+75ceYHbbnwzVBxnoj6Q4u9LsfZOm9bazETsxK8tbR4PZdSmccEsCIQCQZCe29T1lu27G1tefi32b+e+c2fh/xSTs5fnKQ/uRbBNbKVlBBYCjZLJ9c7VkBM4BTIKEYkwGpZ78Bt6vxrTppoq4Phph+m3fVTKT5oUZw8xqwT1/zTwmgJvCbu9u0BlwEQ6RWpXmLKCNMxlnUPa3XtK89erbMBhrt+mPHtgmpy9I+V+LyI8IsQmX9Ui6vX6L/wzc3H5MF1h768es2+3R/ddPjP97abkDe3GZf3thuTm9brvePEyY4s/sfZq/Xv+8Jm41O3rzvwPM+tRvPZ5uqnhfJNF3417ZkvpqLjV4j+DDagHMa6dcFxjY46+5TJTgv/IjGzRnvoRjyUdTcWQEydczDc/tX0N34oRLdAZIpIw1Gw168PTu8MnNOPWKWXYOjwrT2bfBUW4ji2mj2rzmZ4O7VmLukKBtbN2ipqcHnM3NlGGJEIal3OrFbjXZhz0o1W3XAkGQpoC4cJi8up0OObj7w+HjpbaxYoYlRigenQJLAtwCiCQxpEBAghjsksGtCM95dFr9Fh4x279QbueCK6VNRaWWBqtJVqdO21EqExgV6hLF1w2ThDmC2arFgomFdKf1wQye9/A/f2cKids0NdAAAAAElFTkSuQmCC" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: url("https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/backgrounds/greyfade.jpg");
+      background-size: cover;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .heroContainer {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 10px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .groupWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .groupWrapper h2 {
+      color: #fff;
+      font-size: 25px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .attributeGroup {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .attributeGroup img {
+      width: 100%;
+      max-width: 80px;
+      height: auto;
+      transition: opacity 0.3s;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin: 30px 0;
+        flex-wrap: wrap;
+        gap: 80px;
+    }
+
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer h3, .footer h2 {
+        color: #808fa6;
+        font-size: 17px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .attribute-icons, .roleGroup {
+        display: grid;
+        gap: 10px;
+    }
+
+    .attribute-icons {
+        grid-template-columns: repeat(4, auto);
+    }
+
+    .attribute-icons img {
+        height: 50px;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+
+    .roleGroup {
+        grid-template-columns: repeat(3, auto);
+        text-align: center;
+    }
+
+    .roleGroup a {
+        color: #808fa6;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+
+    .attribute:hover {
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="heroContainer">
+    <div class="groupWrapper">
+      <h2>Strength</h2>
+      <div id="Strength" class="attributeGroup"></div>
+    </div>
+    <div class="groupWrapper">
+      <h2>Agility</h2>
+      <div id="Agility" class="attributeGroup"></div>
+    </div>
+    <div class="groupWrapper">
+      <h2>Intelligence</h2>
+      <div id="Intelligence" class="attributeGroup"></div>
+    </div>
+    <div class="groupWrapper">
+      <h2>Universal</h2>
+      <div id="Universal" class="attributeGroup"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-section">
+        <h3>Attribute</h3>
+        <div class="attribute-icons">
+        <img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png" class="attribute" id="str">
+        <img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/icons/hero_agility.png" class="attribute" id="agi">
+        <img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/icons/hero_intelligence.png" class="attribute" id="int">
+        <img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/icons/hero_universal.png" class="attribute" id="uni">
+        </div>
+    </div>
+
+    <div class="footer-section">
+        <h2>Roles</h2>
+        <div class="roleGroup">
+        <a>Carry</a>
+        <a>Support</a>
+        <a>Nuker</a>
+        <a>Disabler</a>
+        <a>Jungler</a>
+        <a>Durable</a>
+        <a>Escape</a>
+        <a>Pusher</a>
+        <a>Initiator</a>
+        </div>
+    </div>
+    </div>
+
+  <script>
+    function formatStringName(name) {
+      return name.slice(14); // Removes "npc_dota_hero_"
+    }
+
+    function formatStringLink(name) {
+      return name.replace(/[\s'_’-]/g, "").toLowerCase();
+    }
+
+    function createHeroCard(hero) {
+      const link = document.createElement("a");
+      link.href = `https://www.dota2.com/hero/${formatStringLink(hero.localized_name)}`;
+      link.style.textDecoration = "none";
+
+      const image = document.createElement("img");
+      image.src = `https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/${formatStringName(hero.name)}.png`;
+      image.dataset.roles = hero.roles.join(",");
+
+      link.appendChild(image);
+
+      const name = document.createElement("h1");
+      name.textContent = hero.localized_name;
+      name.style.fontSize = "10px";
+      name.style.color = "white";
+      name.style.textAlign = "center";
+
+      const card = document.createElement("div");
+      card.style.margin = "10px 0";
+      card.style.display = "flex";
+      card.style.flexDirection = "column";
+      card.style.alignItems = "center";
+
+      card.appendChild(link);
+      card.appendChild(name);
+
+      return card;
+    }
+
+    fetch("https://api.opendota.com/api/heroes")
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(hero => {
+          const heroCard = createHeroCard(hero);
+          const container = document.getElementById(
+            hero.primary_attr === "agi" ? "Agility" :
+            hero.primary_attr === "str" ? "Strength" :
+            hero.primary_attr === "int" ? "Intelligence" :
+            "Universal"
+          );
+          container.appendChild(heroCard);
+        });
+      })
+      .catch(err => console.error("Error fetching heroes:", err));
+  </script>
+
+  <script>
+    const attributeIcons = document.querySelectorAll(".attribute");
+    const attributeGroups = {
+      str: document.getElementById("Strength"),
+      agi: document.getElementById("Agility"),
+      int: document.getElementById("Intelligence"),
+      uni: document.getElementById("Universal")
+    };
+
+    let activeAttribute = null;
+
+    attributeIcons.forEach(icon => {
+      icon.addEventListener("click", () => {
+        const id = icon.id;
+        if (activeAttribute === id) {
+          Object.values(attributeGroups).forEach(group => group.style.opacity = "1");
+          activeAttribute = null;
+        } else {
+          Object.entries(attributeGroups).forEach(([key, group]) => {
+            group.style.opacity = (key === id) ? "1" : "0.3";
+          });
+          activeAttribute = id;
+        }
+      });
+    });
+  </script>
+
+  <script>
+    const roleLinks = document.querySelectorAll(".roleGroup a");
+    let activeRole = null;
+
+    roleLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        const selectedRole = link.textContent.trim();
+        const heroImages = document.querySelectorAll(".attributeGroup img");
+
+        if (activeRole === selectedRole) {
+          heroImages.forEach(img => img.style.opacity = "1");
+          activeRole = null;
+        } else {
+          heroImages.forEach(img => {
+            const roles = img.dataset.roles?.split(",") || [];
+            img.style.opacity = roles.includes(selectedRole) ? "1" : "0.3";
+          });
+          activeRole = selectedRole;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
