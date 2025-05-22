@@ -43,7 +43,7 @@
     .attributeGroup {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 10px;
+      gap: 20px;
     }
 
     .attributeGroup img {
@@ -104,6 +104,13 @@
         cursor: pointer;
         transition: opacity 0.3s ease;
     }
+
+    .roleGroup a.active {
+        color: #fff;
+        text-shadow: 0 0 5px #f5f5f5, 0 0 10px #f5f5f5;
+        font-weight: bold;
+    }
+
 
     .attribute:hover {
       opacity: 0.5;
@@ -245,23 +252,27 @@
     let activeRole = null;
 
     roleLinks.forEach(link => {
-      link.addEventListener("click", () => {
+        link.addEventListener("click", () => {
         const selectedRole = link.textContent.trim();
         const heroImages = document.querySelectorAll(".attributeGroup img");
 
         if (activeRole === selectedRole) {
-          heroImages.forEach(img => img.style.opacity = "1");
-          activeRole = null;
+            heroImages.forEach(img => img.style.opacity = "1");
+            link.classList.remove("active");
+            activeRole = null;
         } else {
-          heroImages.forEach(img => {
+            roleLinks.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
+            heroImages.forEach(img => {
             const roles = img.dataset.roles?.split(",") || [];
             img.style.opacity = roles.includes(selectedRole) ? "1" : "0.3";
-          });
-          activeRole = selectedRole;
+            });
+            activeRole = selectedRole;
         }
-      });
+        });
     });
-  </script>
+    </script>
+
 
 </body>
 </html>
